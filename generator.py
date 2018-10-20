@@ -121,7 +121,6 @@ def draw_station_name(draw, f, t):
 def draw_train_no(draw, no):
     font = ImageFont.truetype(os.path.relpath("./fonts/STSongti.ttf"), 32)
     offset = ((abs(len(no) - 5)) * 5)
-    print(offset)
     draw.text((300 + offset / 2, 70), no, font=font, fill=black)
     # 次
     ci_font = ImageFont.truetype(os.path.relpath("./fonts/simsun.ttf"), 24)
@@ -218,14 +217,14 @@ def draw_id_no(draw, id_no=random_id_no(), name=random_chinese()):
     draw.text((num_one_count * 5 / 2 + 360, 270), name, font=name_font, fill=black)
 
 
-stations = load_stations_from_file()
-
-img = generate_ticket_template()
-draw = ImageDraw.Draw(img)
-draw_station_name(draw, stations[random.randint(0, len(stations))], stations[random.randint(0, len(stations))])
-draw_train_no(draw, random_train_no())
-draw_datetime(draw, random_date())
-draw_sit_no(draw)
-draw_ticket_price(draw)
-draw_id_no(draw)
-img.show()
+if __name__ == "__main__":
+    stations = load_stations_from_file()
+    img = generate_ticket_template()
+    draw = ImageDraw.Draw(img)
+    draw_station_name(draw, stations[random.randint(0, len(stations))], stations[random.randint(0, len(stations))])
+    draw_train_no(draw, random_train_no())
+    draw_datetime(draw, random_date())
+    draw_sit_no(draw)
+    draw_ticket_price(draw)
+    draw_id_no(draw)
+    img.show()
